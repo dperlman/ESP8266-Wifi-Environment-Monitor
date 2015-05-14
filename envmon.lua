@@ -103,7 +103,7 @@ tmr.alarm(2, 5000, 0,
       avms = avms + v
     end
     avms = avms/ #timelist
-    print("logging data ms:", avms, "temp:", temperature, "humidity:", humidity, "heap:", node.heap())
+    print("logging data ms:", avms, "temp:", temperature, "humidity:", tostring(humidity), "heap:", node.heap())
     -- do next file here
     dofile("envmon_evallog.lc")
   end)
