@@ -1,5 +1,6 @@
 local requesttext = "GET /update?key=YH4YN6VWTKLZN58H"..
   "&field1="..tostring(avms/1000)..
+  "&field2="..tostring(temp2)..
   "&field3="..tostring(temperature)..
   "&field4="..tostring(humidity)..
   "&field5="..tostring(timelist[1]/1000)..
@@ -26,6 +27,7 @@ conn:on("disconnection",
   function(c)
     print("disconnection", node.heap())
     avms=nil
+    temp2=nil
     temperature=nil
     humidity=nil
     timelist=nil
