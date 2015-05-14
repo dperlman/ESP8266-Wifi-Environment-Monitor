@@ -19,6 +19,7 @@ local hostlist =
 timelist = {0, 0, 0}
 successlist = {false, false, false}
 
+temp2 = 0
 temperature = 0
 humidity = 0
 avms = 0
@@ -27,15 +28,31 @@ datetime = ""
 
 local function temphum()
   print("temphum", node.heap())
+  
+  --dht22 version
+  therm = require("dht_lib")
+  therm.read22(3) --gpio0
+  temperature = therm.getTemperature()
+  humidity = therm.getHumidity()
+  local tt = tostring(temperature)
+  temperature = tt:sub(1,-2).."."..tt:sub(-1)
+  tt = tostring(humidity)
+  humidity = tt:sub(1,-2).."."..tt:sub(-1)
+  DHT = nil
+  package.loaded["dht_lib"]=nil
+  _G["dht_lib"]=nil
+  
+  --ds18b20 version
   therm = require("ds18b20INT")
   therm.setup(3) --gpio0
   therm.read()
   therm.read()
-  temperature=therm.read()
-  humidity=0
+  temp2=therm.read()
   therm=nil
   package.loaded["ds18b20INT"]=nil
   _G["ds18b20INT"]=nil
+  
+
   print("package.loaded done", node.heap())
 end
 
@@ -87,7 +104,7 @@ tmr.alarm(2, 5000, 0,
       avms = avms + v
     end
     avms = avms/ #timelist
-    print("logging data ms:", avms, "temp:", temperature, "heap:", node.heap())
+    print("logging data ms:", avms, "dht22 temp:", temperature, "dht22 hum:", tostring(humidity), "ds18b20 temp:", temp2, "heap:", node.heap())
     -- do next file here
     dofile("envmon_evallog.lc")
   end)
