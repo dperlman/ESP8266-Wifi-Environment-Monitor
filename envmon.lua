@@ -27,15 +27,31 @@ datetime = ""
 
 local function temphum()
   print("temphum", node.heap())
-  therm = require("ds18b20INT")
-  therm.setup(3) --gpio0
-  therm.read()
-  therm.read()
-  temperature=therm.read()
-  humidity=0
-  therm=nil
-  package.loaded["ds18b20INT"]=nil
-  _G["ds18b20INT"]=nil
+  
+  --ds18b20 version
+--  therm = require("ds18b20INT")
+--  therm.setup(3) --gpio0
+--  therm.read()
+--  therm.read()
+--  temperature=therm.read()
+--  humidity=0
+--  therm=nil
+--  package.loaded["ds18b20INT"]=nil
+--  _G["ds18b20INT"]=nil
+  
+  --dht22 version
+  therm = require("dht_lib")
+  therm.read22(3) --gpio0
+  temperature = therm.getTemperature()
+  humidity = therm.getHumidity()
+  local tt = tostring(temperature)
+  temperature = tt:sub(1,-2).."."..tt:sub(-1)
+  tt = tostring(humidity)
+  humidity = tt:sub(1,-2).."."..tt:sub(-1)
+  DHT = nil
+  package.loaded["dht_lib"]=nil
+  _G["dht_lib"]=nil
+  
   print("package.loaded done", node.heap())
 end
 
