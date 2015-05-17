@@ -1,6 +1,9 @@
+--local apikey="39FCF7QAGRAV1LV9" --001
+local apikey="V4FIQ8QKOJFGCEJ8" --002
+
 local vv = tostring(adc.readvdd33(0))
 local v = vv:sub(1,-4).."."..vv:sub(-3)
-local requesttext = "GET /update?key=39FCF7QAGRAV1LV9"..
+local requesttext = "GET /update?key="..apikey..
   "&field2="..tostring(startheap)..
   "&field4="..tostring(pfails)..
   "&field6="..v..
