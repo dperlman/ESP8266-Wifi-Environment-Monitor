@@ -20,17 +20,17 @@ local stconn=net.createConnection(net.TCP, 0)
 stconn:on("connection", 
   function(c)
     c:send(requesttext)
-    print(requesttext)
+    --print(requesttext)
   end)
 stconn:on("receive", 
   function(c, p)
     c:close()
     pfails=0
-    print(p)
+    print(p:gsub("\r\n(.*)","...etc.",1))
   end)
 stconn:on("disconnection", 
   function(c)
-    print("disconnection", node.heap())
+    --print("disconnection", node.heap())
     --print("restarting now!")
     --node.restart()
   end)

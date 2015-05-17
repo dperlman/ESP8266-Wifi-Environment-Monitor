@@ -25,10 +25,11 @@ conn:on("connection",
 conn:on("receive", 
   function(c, p)
     c:close()
+    print(p:gsub("\r\n(.*)","...etc.",1))
   end)
 conn:on("disconnection", 
   function(c)
-    print("disconnection", node.heap())
+    --print("disconnection", node.heap())
     avms=nil
     temp2=nil
     temperature=nil

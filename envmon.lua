@@ -28,7 +28,7 @@ datetime = ""
 
 
 local function temphum()
-  print("temphum", node.heap())
+  --print("temphum", node.heap())
   
   --dht22 version
   therm = require("dht_lib")
@@ -54,7 +54,7 @@ local function temphum()
   _G["ds18b20INT"]=nil
   
 
-  print("package.loaded done", node.heap())
+  --print("package.loaded done", node.heap())
 end
 
 
@@ -73,7 +73,7 @@ local function startping(i, host)
     function(c, payload) 
       timelist[i] = (tmr.now() - connectTime)
       successlist[i]=true
-      print(i, host, timelist[i])
+      --print(i, host, timelist[i])
       --print(payload)
       c:close()
     end)
@@ -127,7 +127,7 @@ tmr.alarm(2, 5000, 0,
 
 tmr.alarm(3, 7000, 0, 
   function() 
-    print("logging status", node.heap())
+    --print("logging status", node.heap())
     -- do next file here
     dofile("envmon_status.lc")
   end)
