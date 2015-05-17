@@ -1,4 +1,7 @@
-local requesttext = "GET /update?key=39FCF7QAGRAV1LV9"..
+--local apikey="39FCF7QAGRAV1LV9" --001
+local apikey="V4FIQ8QKOJFGCEJ8" --002
+
+local requesttext = "GET /update?key="..apikey..
   "&field1="..tostring(node.heap())..
   --"&field2=0"..
   " HTTP/1.1\r\n".. 
