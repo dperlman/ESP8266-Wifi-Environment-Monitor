@@ -1,4 +1,7 @@
-local requesttext = "GET /update?key=YH4YN6VWTKLZN58H"..
+--local apikey="YH4YN6VWTKLZN58H" --001
+local apikey="M8UM5QKG9S25PUCG" --002
+
+local requesttext = "GET /update?key="..apikey..
   "&field1="..tostring(avms/1000)..
   "&field2="..tostring(temp2)..
   "&field3="..tostring(temperature)..
@@ -32,10 +35,12 @@ conn:on("disconnection",
     humidity=nil
     timelist=nil
     successlist=nil
+    clist=nil
+    cfails=nil
   end)
 
 
-print("sending data")
+print("DATA,"..tostring(avms)..","..tostring(timelist[1])..","..tostring(timelist[2])..","..tostring(timelist[3])..","..tostring(temp2)..","..tostring(temperature)..","..tostring(humidity)..","..tostring(node.heap()))
 
 --conn:connect(80,'thingspeak.com') 
 conn:connect(80,'184.106.153.149') 

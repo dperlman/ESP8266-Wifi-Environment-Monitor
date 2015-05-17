@@ -16,8 +16,9 @@ local hostlist =
   "wisc.edu"}
 
 
-timelist = {0, 0, 0}
+timelist = {}
 successlist = {false, false, false}
+clist = {}
 
 temp2 = 0
 temperature = 0
@@ -61,8 +62,9 @@ end
 local function startping(i, host)
   --print("startping", i, host, node.heap())
   local conn = net.createConnection(net.TCP, 0)
+  local connectTime
+  clist[i]=conn
   local requesttext = string.gsub(requesttemplate, "#HOST#", host)
-  local connectTime = tmr.now()
   conn:on("connection",  
     function(c) 
       c:send(requesttext) 
@@ -85,6 +87,7 @@ local function startping(i, host)
     end)
   
   --start the thing
+  connectTime = tmr.now()
   conn:connect(80,host)
   print("started", i, host, node.heap())
 end
@@ -100,12 +103,25 @@ end
 --set up a timer to compile the results after this is hopefully for sure all done
 tmr.alarm(2, 5000, 0, 
   function() 
-    for i,v in ipairs(timelist) do
-      avms = avms + v
+    local avn=0
+    for i,c in ipairs(clist) do
+      --calculate the average time over the ones that worked and count the ones that didn't
+      if successlist[i] then
+        avms = avms + timelist[i]
+        avn=avn+1
+      else
+        pfails=pfails+1
+        timelist[i]="fail"
+      end
+      --clean up if the connection still exists
+      if c then
+        c:close()
+        c=nil
+      end
+        
     end
-    avms = avms/ #timelist
-    print("logging data ms:", avms, "dht22 temp:", temperature, "dht22 hum:", tostring(humidity), "ds18b20 temp:", temp2, "heap:", node.heap())
-    -- do next file here
+    avms = avms/avn
+    -- log the data
     dofile("envmon_evallog.lc")
   end)
 
