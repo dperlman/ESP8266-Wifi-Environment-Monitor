@@ -36,7 +36,7 @@ stconn:on("disconnection",
   end)
 
 
-io.write("STAT", ",,,,,,,", tostring(startheap), ",", tostring(pfails), ",", v, ",", tostring(node.heap()), "\n")
+io.write("STAT", ",,,,,,,", tostring(startheap), ",", tostring(pfails), ",", tostring(v), ",", tostring(node.heap()), "\n")
 
 --stconn:connect(80,'thingspeak.com') 
 stconn:connect(80,'184.106.153.149') 

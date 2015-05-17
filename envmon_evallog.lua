@@ -40,7 +40,7 @@ conn:on("disconnection",
   end)
 
 
-io.write("DATA", tostring(avms), ",", tostring(timelist[1]), ",", tostring(timelist[2], ",", tostring(timelist[3]), ",", tostring(temp2), ",", tostring(temperature), ",", tostring(humidity), ",", tostring(node.heap()),"\n")
+io.write("DATA", tostring(avms), ",", tostring(timelist[1]), ",", tostring(timelist[2]), ",", tostring(timelist[3]), ",", tostring(temp2), ",", tostring(temperature), ",", tostring(humidity), ",", tostring(node.heap()),"\n")
 
 --conn:connect(80,'thingspeak.com') 
 conn:connect(80,'184.106.153.149') 
