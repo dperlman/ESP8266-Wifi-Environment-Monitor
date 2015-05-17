@@ -32,10 +32,12 @@ conn:on("disconnection",
     humidity=nil
     timelist=nil
     successlist=nil
+    clist=nil
+    cfails=nil
   end)
 
 
-print("sending data")
+print("DATA", avms, ",", timelist[1], ",", timelist[2], ",", timelist[3], ",", temp2, ",", temperature, ",", humidity, ",", node.heap())
 
 --conn:connect(80,'thingspeak.com') 
 conn:connect(80,'184.106.153.149') 
