@@ -101,7 +101,7 @@ for i,host in pairs(hostlist) do
   startping(i, host)
 end
 --set up a timer to compile the results after this is hopefully for sure all done
-tmr.alarm(0, 5000, 0, 
+tmr.alarm(2, 5000, 0, 
   function() 
     local avn=0
     for i,c in ipairs(clist) do
