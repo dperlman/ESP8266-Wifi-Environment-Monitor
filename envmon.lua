@@ -62,6 +62,7 @@ end
 local function startping(i, host)
   --print("startping", i, host, node.heap())
   local conn = net.createConnection(net.TCP, 0)
+  local connectTime
   clist[i]=conn
   local requesttext = string.gsub(requesttemplate, "#HOST#", host)
   conn:on("connection",  
@@ -86,7 +87,7 @@ local function startping(i, host)
     end)
   
   --start the thing
-  local connectTime = tmr.now()
+  connectTime = tmr.now()
   conn:connect(80,host)
   print("started", i, host, node.heap())
 end
