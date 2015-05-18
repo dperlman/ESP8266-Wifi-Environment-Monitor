@@ -44,6 +44,9 @@ local function temphum()
   package.loaded["dht_lib"]=nil
   _G["dht_lib"]=nil
   print("post-dht heap", node.heap())
+  collectgarbage()
+  print("post-dht-gc heap", node.heap())
+  
   
   --ds18b20 version
   print("pre-ds heap", node.heap())
@@ -56,6 +59,9 @@ local function temphum()
   package.loaded["ds18b20INT"]=nil
   _G["ds18b20INT"]=nil
   print("post-ds heap", node.heap())
+  collectgarbage()
+  print("post-ds-gc heap", node.heap())
+  
   
 
   --print("package.loaded done", node.heap())
