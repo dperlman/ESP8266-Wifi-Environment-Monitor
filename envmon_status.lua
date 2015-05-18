@@ -34,7 +34,7 @@ stconn:on("receive",
     c:close()
     pfails=0
     tsuccess=true
-    print(p:gsub("\r\n(.*)","...etc.",1))
+    print(p:gsub('(.-)\n.-\n(.-)\n.*', '%1 %2 ...etc.', 1))
   end)
 stconn:on("disconnection", 
   function(c)

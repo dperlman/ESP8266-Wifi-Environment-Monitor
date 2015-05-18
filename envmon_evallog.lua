@@ -25,7 +25,7 @@ conn:on("connection",
 conn:on("receive", 
   function(c, p)
     c:close()
-    print(p:gsub("\r\n(.*)","...etc.",1))
+    print(p:gsub('(.-)\n.-\n(.-)\n.*', '%1 %2 ...etc.', 1))
   end)
 conn:on("disconnection", 
   function(c)

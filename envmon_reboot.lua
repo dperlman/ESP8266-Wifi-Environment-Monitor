@@ -21,7 +21,7 @@ conn:on("connection",
 conn:on("receive", 
   function(c, p)
     c:close()
-    print(p:match(".-\n.-\n.-\n"))
+    print(p:gsub('(.-)\n.-\n(.-)\n.*', '%1 %2 ...etc.', 1))
   end)
 
 print("REBT,"..tostring(rebootheap))
