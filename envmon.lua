@@ -103,6 +103,7 @@ end
 --set up a timer to compile the results after this is hopefully for sure all done
 tmr.alarm(2, 5000, 0, 
   function() 
+    avms=0
     local avn=0
     for i,c in ipairs(clist) do
       --calculate the average time over the ones that worked and count the ones that didn't
