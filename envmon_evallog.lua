@@ -2,7 +2,7 @@
 local apikey="M8UM5QKG9S25PUCG" --002
 
 local requesttext = "GET /update?key="..apikey..
-  "&field1="..tostring(avms/1000)..
+  "&field1="..tostring(avms)..
   "&field2="..tostring(temp2)..
   "&field3="..tostring(temperature)..
   "&field4="..tostring(humidity)..
@@ -30,7 +30,7 @@ conn:on("receive",
 conn:on("disconnection", 
   function(c)
     --print("disconnection", node.heap())
-    avms=nil
+    --avms=nil
     temp2=nil
     temperature=nil
     humidity=nil

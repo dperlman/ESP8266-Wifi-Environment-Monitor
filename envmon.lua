@@ -123,7 +123,7 @@ tmr.alarm(2, 5000, 0,
         
     end
     if avn > 0 then
-      avms = avms/avn
+      avms = avms/(1000*avn)
     else
       avms = nil
     end
