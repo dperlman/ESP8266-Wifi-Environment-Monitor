@@ -8,11 +8,11 @@ tfails=0
 tsuccess=true
 
 --the api to use
---local dapi="YH4YN6VWTKLZN58H" --001
---local sapi="39FCF7QAGRAV1LV9" --001
+--dapi="YH4YN6VWTKLZN58H" --001
+--sapi="39FCF7QAGRAV1LV9" --001
 
-local dapi="M8UM5QKG9S25PUCG" --002
-local sapi="V4FIQ8QKOJFGCEJ8" --002
+dapi="M8UM5QKG9S25PUCG" --002
+sapi="V4FIQ8QKOJFGCEJ8" --002
 
 
 
