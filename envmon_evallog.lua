@@ -1,3 +1,10 @@
+local tempdiff
+if temp2 and temperature then
+  tempdiff = temp2 - temperature
+else
+  tempdiff = 0
+end
+
 local requesttext = "GET /update?key="..dapi..
   "&field1="..tostring(avms)..
   "&field2="..tostring(temp2)..
@@ -6,6 +13,7 @@ local requesttext = "GET /update?key="..dapi..
   "&field5="..tostring(timelist[1])..
   "&field6="..tostring(timelist[2])..
   "&field7="..tostring(timelist[3])..
+  "&field8="..tostring(tempdiff)..
   " HTTP/1.1\r\n".. 
   "Host: api.thingspeak.com\r\n"..
   "Accept: */*\r\n"..
@@ -38,7 +46,7 @@ conn:on("disconnection",
   end)
 
 
-print("DATA,"..tostring(avms)..","..tostring(timelist[1])..","..tostring(timelist[2])..","..tostring(timelist[3])..","..tostring(temp2)..","..tostring(temperature)..","..tostring(humidity))
+print("DATA,"..tostring(avms)..","..tostring(timelist[1])..","..tostring(timelist[2])..","..tostring(timelist[3])..","..tostring(temp2)..","..tostring(temperature)..","..tostring(tempdiff)..","..tostring(humidity))
 
 --conn:connect(80,'thingspeak.com') 
 conn:connect(80,'184.106.153.149') 
