@@ -31,6 +31,7 @@ local function temphum()
   --print("temphum", node.heap())
   
   --dht22 version
+  print("pre-dht heap", node.heap())
   therm = require("dht_lib")
   therm.read22(3) --gpio0
   temperature = therm.getTemperature()
@@ -42,8 +43,10 @@ local function temphum()
   DHT = nil
   package.loaded["dht_lib"]=nil
   _G["dht_lib"]=nil
+  print("post-dht heap", node.heap())
   
   --ds18b20 version
+  print("pre-ds heap", node.heap())
   therm = require("ds18b20INT")
   therm.setup(3) --gpio0
   therm.read()
@@ -52,6 +55,7 @@ local function temphum()
   therm=nil
   package.loaded["ds18b20INT"]=nil
   _G["ds18b20INT"]=nil
+  print("post-ds heap", node.heap())
   
 
   --print("package.loaded done", node.heap())
