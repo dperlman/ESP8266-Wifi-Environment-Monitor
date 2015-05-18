@@ -124,6 +124,7 @@ tmr.alarm(2, 5000, 0,
       avms = avms/avn
     else
       avms = nil
+    end
     -- log the data
     dofile("envmon_evallog.lc")
   end)
