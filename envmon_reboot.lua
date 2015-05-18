@@ -1,9 +1,6 @@
---local apikey="39FCF7QAGRAV1LV9" --001
-local apikey="V4FIQ8QKOJFGCEJ8" --002
-
 local rebootheap=node.heap()
 
-local requesttext = "GET /update?key="..apikey..
+local requesttext = "GET /update?key="..sapi..
   "&field1="..tostring(rebootheap)..
   --"&field2=0"..
   " HTTP/1.1\r\n".. 

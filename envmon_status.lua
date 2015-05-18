@@ -1,6 +1,3 @@
---local apikey="39FCF7QAGRAV1LV9" --001
-local apikey="V4FIQ8QKOJFGCEJ8" --002
-
 if tsuccess then
   tfails = 0
 else
@@ -9,7 +6,7 @@ end
 
 local vv = tostring(adc.readvdd33(0))
 local v = vv:sub(1,-4).."."..vv:sub(-3)
-local requesttext = "GET /update?key="..apikey..
+local requesttext = "GET /update?key="..sapi..
   "&field2="..tostring(startheap)..
   "&field4="..tostring(pfails)..
   "&field6="..v..

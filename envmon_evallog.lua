@@ -1,7 +1,4 @@
---local apikey="YH4YN6VWTKLZN58H" --001
-local apikey="M8UM5QKG9S25PUCG" --002
-
-local requesttext = "GET /update?key="..apikey..
+local requesttext = "GET /update?key="..dapi..
   "&field1="..tostring(avms)..
   "&field2="..tostring(temp2)..
   "&field3="..tostring(temperature)..
