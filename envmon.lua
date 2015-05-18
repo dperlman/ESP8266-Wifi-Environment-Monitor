@@ -112,6 +112,7 @@ tmr.alarm(2, 5000, 0,
       else
         pfails=pfails+1
         timelist[i]="fail"
+        print("fail", hostlist[i])
       end
       --clean up if the connection still exists
       if c then
