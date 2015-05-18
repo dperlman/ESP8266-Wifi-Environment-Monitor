@@ -14,14 +14,15 @@ local conn=net.createConnection(net.TCP, 0)
 conn:on("connection", 
   function(c)
     c:send(requesttext)
-    print(requesttext)
+    --print(requesttext)
   end)
 conn:on("receive", 
   function(c, p)
     c:close()
-    print(p)
+    print(p:match(".-\n.-\n.-\n"))
   end)
 
-print("thingspeak rebootlog")
+print("REBT,"..tostring(node.heap()))
+
 --conn:connect(80,'thingspeak.com') 
 conn:connect(80,'184.106.153.149') 

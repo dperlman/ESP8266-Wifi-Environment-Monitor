@@ -5,6 +5,7 @@ print("Stop timer alarm 0 and 1 to interrupt")
 --keep track of count of failed connections
 pfails=0
 tfails=0
+tsuccess=true
 
 tmr.alarm(1, 15000, 0,
   function()
