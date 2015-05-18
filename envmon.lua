@@ -110,6 +110,7 @@ tmr.alarm(2, 5000, 0,
       if successlist[i] then
         avms = avms + timelist[i]
         avn=avn+1
+        timelist[i]=timelist[i]/1000
       else
         pfails=pfails+1
         timelist[i]="fail"

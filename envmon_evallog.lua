@@ -6,9 +6,9 @@ local requesttext = "GET /update?key="..apikey..
   "&field2="..tostring(temp2)..
   "&field3="..tostring(temperature)..
   "&field4="..tostring(humidity)..
-  "&field5="..tostring(timelist[1]/1000)..
-  "&field6="..tostring(timelist[2]/1000)..
-  "&field7="..tostring(timelist[3]/1000)..
+  "&field5="..tostring(timelist[1])..
+  "&field6="..tostring(timelist[2])..
+  "&field7="..tostring(timelist[3])..
   " HTTP/1.1\r\n".. 
   "Host: api.thingspeak.com\r\n"..
   "Accept: */*\r\n"..
