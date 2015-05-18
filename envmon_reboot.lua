@@ -1,8 +1,10 @@
 --local apikey="39FCF7QAGRAV1LV9" --001
 local apikey="V4FIQ8QKOJFGCEJ8" --002
 
+local rebootheap=node.heap()
+
 local requesttext = "GET /update?key="..apikey..
-  "&field1="..tostring(node.heap())..
+  "&field1="..tostring(rebootheap)..
   --"&field2=0"..
   " HTTP/1.1\r\n".. 
   "Host: api.thingspeak.com\r\n"..
@@ -22,7 +24,7 @@ conn:on("receive",
     print(p:match(".-\n.-\n.-\n"))
   end)
 
-print("REBT,"..tostring(node.heap()))
+print("REBT,"..tostring(rebootheap))
 
 --conn:connect(80,'thingspeak.com') 
 conn:connect(80,'184.106.153.149') 
