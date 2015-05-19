@@ -64,15 +64,15 @@ local function temphum()
   collectgarbage()
   print("post-ds-gc heap", node.heap())
   
+  local tt
   --calc diff
   if dhtT and dsT then
     tempdiff = dsT - dhtT
+    tt = tostring(tempdiff)
+    tempdiff = tt:sub(1,-5).."."..tt:sub(-4)
   end
 
   --clean up the numbers 
-  local tt
-  tt = tostring(tempdiff)
-  tempdiff = tt:sub(1,-5).."."..tt:sub(-4)
   tt = tostring(dhtT)
   temperature = tt:sub(1,-5).."."..tt:sub(-4)
   tt = tostring(dsT)
