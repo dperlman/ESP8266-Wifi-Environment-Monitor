@@ -4,6 +4,8 @@ else
   tfails = tfails + 1
 end
 
+local uptime=tmr.time()
+
 local vv = tostring(adc.readvdd33(0))
 local v = vv:sub(1,-4).."."..vv:sub(-3)
 local requesttext = "GET /update?key="..sapi..
@@ -11,6 +13,7 @@ local requesttext = "GET /update?key="..sapi..
   "&field4="..tostring(pfails)..
   "&field6="..v..
   "&field7="..tostring(tfails)..
+  "&field8="..tostring(uptime)..
   " HTTP/1.1\r\n".. 
   "Host: api.thingspeak.com\r\n"..
   "Accept: */*\r\n"..
@@ -41,7 +44,7 @@ stconn:on("disconnection",
   end)
 
 
-print("STAT,"..tostring(pfails)..","..tostring(tfails)..","..tostring(v)..","..tostring(startheap)..","..tostring(node.heap()))
+print("STAT,"..tostring(pfails)..","..tostring(tfails)..","..tostring(uptime)..","..tostring(v)..","..tostring(startheap)..","..tostring(node.heap()))
 
 tsuccess=false
 --stconn:connect(80,'thingspeak.com') 
