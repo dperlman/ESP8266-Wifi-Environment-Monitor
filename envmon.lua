@@ -54,6 +54,9 @@ local function temphum()
   therm.readNumber()
   therm.readNumber()
   local dsT=therm.readNumber()
+  if dsT == 850000 then
+    dsT = nil
+  end
   therm=nil
   package.loaded["ds18b20INT"]=nil
   _G["ds18b20INT"]=nil
