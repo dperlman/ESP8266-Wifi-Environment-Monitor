@@ -22,6 +22,7 @@ clist = {}
 
 temp2 = 0
 temperature = 0
+tempdiff = 0
 humidity = 0
 avms = 0
 datetime = ""
@@ -34,12 +35,10 @@ local function temphum()
   print("pre-dht heap", node.heap())
   therm = require("dht_lib")
   therm.read22(3) --gpio0
-  temperature = therm.getTemperature()
+  local dhtT = therm.getTemperature() * 1000 --so it's on same scale as the ds18b20
   humidity = therm.getHumidity()
-  local tt = tostring(temperature)
-  temperature = tt:sub(1,-2).."."..tt:sub(-1)
-  tt = tostring(humidity)
-  humidity = tt:sub(1,-2).."."..tt:sub(-1)
+  local hh = tostring(humidity)
+  humidity = hh:sub(1,-2).."."..hh:sub(-1)
   DHT = nil
   package.loaded["dht_lib"]=nil
   _G["dht_lib"]=nil
@@ -52,9 +51,9 @@ local function temphum()
   print("pre-ds heap", node.heap())
   therm = require("ds18b20INT")
   therm.setup(3) --gpio0
-  therm.read()
-  therm.read()
-  temp2=therm.read()
+  therm.readNumber()
+  therm.readNumber()
+  local dsT=therm.readNumber()
   therm=nil
   package.loaded["ds18b20INT"]=nil
   _G["ds18b20INT"]=nil
@@ -62,8 +61,20 @@ local function temphum()
   collectgarbage()
   print("post-ds-gc heap", node.heap())
   
-  
+  --calc diff
+  if dhtT and dsT then
+    tempdiff = dsT - dhtT
+  end
 
+  --clean up the numbers 
+  local tt
+  tt = tostring(tempdiff)
+  tempdiff = tt:sub(1,-5).."."..tt:sub(-4)
+  tt = tostring(dhtT)
+  temperature = tt:sub(1,-5).."."..tt:sub(-4)
+  tt = tostring(dsT)
+  temp2 = tt:sub(1,-5).."."..tt:sub(-4)
+  
   --print("package.loaded done", node.heap())
 end
 

@@ -6,7 +6,7 @@ dapi="M8UM5QKG9S25PUCG" --002
 sapi="V4FIQ8QKOJFGCEJ8" --002
 
 --how often to run
-local howoften=60000
+local howoften=30000
 
 --global variables used across files
 pfails=0

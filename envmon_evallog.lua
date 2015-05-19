@@ -1,9 +1,3 @@
-local tempdiff
-if temp2 and temperature then
-  tempdiff = temp2 - temperature
-else
-  tempdiff = 0
-end
 
 local requesttext = "GET /update?key="..dapi..
   "&field1="..tostring(avms)..
