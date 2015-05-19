@@ -68,7 +68,7 @@ local function temphum()
   --calc diff
   if dhtT and dsT then
     tempdiff = dsT - dhtT
-    tt = tostring(tempdiff)
+    tt = '0'..tostring(tempdiff)
     tempdiff = tt:sub(1,-5).."."..tt:sub(-4)
   end
 
