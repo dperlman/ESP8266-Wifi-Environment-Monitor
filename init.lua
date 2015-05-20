@@ -19,6 +19,10 @@ temperature = 0
 tempdiff = nil
 humidity = 0
 avms = 0
+timelist = {}
+successlist = {}
+clist = {}
+
 
 --setup wifi
 wifi.setmode(wifi.STATIONAP)
