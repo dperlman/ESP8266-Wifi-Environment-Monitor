@@ -20,12 +20,11 @@ timelist = {}
 successlist = {false, false, false}
 clist = {}
 
-temp2 = 0
-temperature = 0
-tempdiff = nil
-humidity = 0
-avms = 0
-datetime = ""
+--temp2 = 0
+--temperature = 0
+--tempdiff = nil
+--humidity = 0
+--avms = 0
 
 
 local function temphum()
@@ -70,6 +69,8 @@ local function temphum()
     tempdiff = dsT - dhtT
     tt = '0'..tostring(tempdiff)
     tempdiff = tt:sub(1,-5).."."..tt:sub(-4)
+  else
+    tempdiff = nil
   end
 
   --clean up the numbers 

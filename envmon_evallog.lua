@@ -31,9 +31,9 @@ conn:on("disconnection",
   function(c)
     --print("disconnection", node.heap())
     --avms=nil
-    temp2=nil
-    temperature=nil
-    humidity=nil
+    --temp2=nil
+    --temperature=nil
+    --humidity=nil
     timelist=nil
     successlist=nil
     clist=nil
