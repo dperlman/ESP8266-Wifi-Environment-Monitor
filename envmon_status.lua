@@ -11,6 +11,7 @@ local v = vv:sub(1,-4).."."..vv:sub(-3)
 local requesttext = "GET /update?key="..sapi..
   "&field2="..tostring(startheap)..
   "&field4="..tostring(pfails)..
+  "&field5="..tostring(cc)..
   "&field6="..v..
   "&field7="..tostring(tfails)..
   "&field8="..tostring(uptime)..
@@ -22,6 +23,7 @@ local requesttext = "GET /update?key="..sapi..
 
   
 
+cc=cc+1
 local stconn=net.createConnection(net.TCP, 0) 
 
 stconn:on("connection", 
@@ -44,7 +46,7 @@ stconn:on("disconnection",
   end)
 
 
-print("STAT,"..tostring(pfails)..","..tostring(tfails)..","..tostring(uptime)..","..tostring(v)..","..tostring(startheap)..","..tostring(node.heap()))
+print("STAT,"..tostring(pfails)..","..tostring(tfails)..","..tostring(uptime)..","..tostring(v)..","..tostring(startheap)..","..tostring(cc)..","..tostring(node.heap()))
 
 tsuccess=false
 --stconn:connect(80,'thingspeak.com') 

@@ -9,6 +9,7 @@ local requesttext = "GET /update?key="..sapi..
   --"User-Agent: Mozilla/4.0 (compatible; esp8266 Lua; Windows NT 5.1)\r\n"..
   "\r\n"
 
+cc=cc+1
 local conn=net.createConnection(net.TCP, 0) 
 conn:on("connection", 
   function(c)

@@ -85,6 +85,7 @@ end
 
 local function startping(i, host)
   --print("startping", i, host, node.heap())
+  cc=cc+1
   local conn = net.createConnection(net.TCP, 0)
   local connectTime
   clist[i]=conn
