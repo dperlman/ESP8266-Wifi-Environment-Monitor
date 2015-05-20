@@ -9,10 +9,16 @@ sapi="V4FIQ8QKOJFGCEJ8" --002
 local howoften=30000
 
 --global variables used across files
+startheap=0
 pfails=0
 tfails=0
 tsuccess=true
 cc=0
+temp2 = 0
+temperature = 0
+tempdiff = nil
+humidity = 0
+avms = 0
 
 --setup wifi
 wifi.setmode(wifi.STATIONAP)
