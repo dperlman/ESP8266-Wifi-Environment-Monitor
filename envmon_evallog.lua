@@ -15,7 +15,6 @@ local requesttext = "GET /update?key="..dapi..
   "\r\n"
 
 
-cc=cc+1
 local conn=net.createConnection(net.TCP, 0) 
 
 conn:on("connection", 

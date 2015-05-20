@@ -12,7 +12,6 @@ local howoften=30000
 pfails=0
 tfails=0
 tsuccess=true
-cc=0
 
 --setup wifi
 wifi.setmode(wifi.STATIONAP)
