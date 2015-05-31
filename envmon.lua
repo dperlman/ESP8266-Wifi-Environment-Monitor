@@ -16,9 +16,9 @@ local hostlist =
   "wisc.edu"}
 
 
-timelist = {}
-successlist = {false, false, false}
-clist = {}
+--timelist = {}
+--successlist = {false, false, false}
+--clist = {}
 
 --temp2 = 0
 --temperature = 0
@@ -124,6 +124,7 @@ end
 temphum()
 
 for i,host in pairs(hostlist) do
+  successlist[i]=false
   startping(i, host)
 end
 --set up a timer to compile the results after this is hopefully for sure all done
