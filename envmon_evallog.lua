@@ -34,10 +34,10 @@ conn:on("disconnection",
     --temp2=nil
     --temperature=nil
     --humidity=nil
-    timelist=nil
-    successlist=nil
-    clist=nil
-    cfails=nil
+    --timelist=nil
+    --successlist=nil
+    --clist=nil
+    --cfails=nil
   end)
 
 
