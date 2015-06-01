@@ -16,15 +16,15 @@ local hostlist =
   "wisc.edu"}
 
 
---timelist = {}
---successlist = {false, false, false}
---clist = {}
+timelist = {}
+successlist = {false, false, false}
+clist = {}
 
---temp2 = 0
---temperature = 0
---tempdiff = nil
---humidity = 0
---avms = 0
+temp2 = 0
+temperature = 0
+tempdiff = nil
+humidity = 0
+avms = 0
 
 
 local function temphum()
@@ -150,6 +150,7 @@ tmr.alarm(2, 5000, 0,
       end
         
     end
+    clist=nil --done with this now
     if avn > 0 then
       avms = avms/(1000*avn)
     else

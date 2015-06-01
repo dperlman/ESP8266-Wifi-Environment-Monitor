@@ -14,14 +14,14 @@ pfails=0
 tfails=0
 tsuccess=true
 cc=0
-temp2 = 0
-temperature = 0
-tempdiff = nil
-humidity = 0
-avms = 0
-timelist = {}
-successlist = {}
-clist = {}
+--temp2 = 0
+--temperature = 0
+--tempdiff = nil
+--humidity = 0
+--avms = 0
+--timelist = {}
+--successlist = {}
+--clist = {}
 
 
 --setup wifi

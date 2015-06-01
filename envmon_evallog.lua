@@ -30,12 +30,12 @@ conn:on("receive",
 conn:on("disconnection", 
   function(c)
     --print("disconnection", node.heap())
-    --avms=nil
-    --temp2=nil
-    --temperature=nil
-    --humidity=nil
-    --timelist=nil
-    --successlist=nil
+    avms=nil
+    temp2=nil
+    temperature=nil
+    humidity=nil
+    timelist=nil
+    successlist=nil
     --clist=nil
     --cfails=nil
   end)
