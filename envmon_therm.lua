@@ -12,12 +12,12 @@ print("pre-dht heap", node.heap())
 local therm = require("dht_lib")
 therm.read22(3) --gpio0
 local thermtemp = therm.getTemperature()
-print("dht temp raw", thermtemp)
+--print("dht temp raw", thermtemp)
 --local dhtT = therm.getTemperature() * 1000 --so it's on same scale as the ds18b20
 local dhtT = thermtemp * 1000 --so it's on same scale as the ds18b20
 humidity = therm.getHumidity()
 local hh = tostring(humidity)
-print("dht humid raw", humidity)
+--print("dht humid raw", humidity)
 humidity = hh:sub(1,-2).."."..hh:sub(-1)
 therm = nil
 package.loaded["dht_lib"]=nil
