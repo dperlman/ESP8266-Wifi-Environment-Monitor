@@ -6,7 +6,7 @@ sapi="39FCF7QAGRAV1LV9" --001
 --sapi="V4FIQ8QKOJFGCEJ8" --002
 
 --how often to run
-local howoften=120000
+local howoften=30000
 
 --global variables used across files
 startheap=0
