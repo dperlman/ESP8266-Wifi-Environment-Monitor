@@ -22,6 +22,17 @@ local temperature
 --==========================Local the bitStream==============
 local bitStream = {}
 
+
+--Mods by DMP 2015-06-02 to match format of ds18b20 module
+--This is because dht module seems to blow the stack after 88 calls
+local bit = bit
+local gpio = gpio
+local tmr = tmr
+local tostring = tostring
+-- Limited to local environment
+setfenv(1,M)
+
+
 ---------------------------Read bitStream from DHTXX--------------------------
 local function read(pin)
 
@@ -77,31 +88,31 @@ function M.read11(pin)
 --Third byte->Temp Data;s Intpart
 --Forth byte->Temp Data's Float Part(Which should be empty)
 --Fifth byte->SUM Byte, Humi+Temp
-  read(pin)
- local checksum = 0
- local checksumTest
-  --DHT data acquired, process.
-  for i = 1, 8, 1 do -- Byte[0]
-    if (bitStream[i] > 3) then
-      humidity = humidity + 2 ^ (8 - i)
-    end
-  end
-  for i = 1, 8, 1 do -- Byte[2]
-    if (bitStream[i + 16] > 3) then
-      temperature = temperature + 2 ^ (8 - i)
-    end
-  end
-  for i = 1, 8, 1 do --Byte[4]
-    if (bitStream[i + 32] > 3) then
-      checksum = checksum + 2 ^ (8 - i)
-    end
-  end
+ read(pin)
+local checksum = 0
+local checksumTest
+ --DHT data acquired, process.
+ for i = 1, 8, 1 do -- Byte[0]
+   if (bitStream[i] > 3) then
+     humidity = humidity + 2 ^ (8 - i)
+   end
+ end
+ for i = 1, 8, 1 do -- Byte[2]
+   if (bitStream[i + 16] > 3) then
+     temperature = temperature + 2 ^ (8 - i)
+   end
+ end
+ for i = 1, 8, 1 do --Byte[4]
+   if (bitStream[i + 32] > 3) then
+     checksum = checksum + 2 ^ (8 - i)
+   end
+ end
 
-  if(checksum ~= humidity+temperature) then
-    humidity = nil
-    temperature = nil
-  end
-  
+ if(checksum ~= humidity+temperature) then
+   humidity = nil
+   temperature = nil
+ end
+ 
 end
 ---------------------------Convert the bitStream into Number through DHT22 Ways--------------------------
 function M.read22( pin )
@@ -142,6 +153,7 @@ function M.read22( pin )
   -- conditions compatible con float point and integer
   if (checksumTest - checksum >= 1) or (checksum - checksumTest >= 1) then
     humidity = nil
+    temperature = nil  --DMP added this here too 2015-06-02
   end
 end
 
