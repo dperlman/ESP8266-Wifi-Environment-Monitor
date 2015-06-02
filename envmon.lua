@@ -56,22 +56,23 @@ clist = {}
 --  conn:connect(80,host)
 --  print("started", i, host, node.heap())
 --end
---
---
---
---
-----temphum()
---dofile("envmon_therm.lc")
---
+
+
+
+
+--temphum()
+dofile("envmon_therm.lc")
+
 --for i,host in pairs(hostlist) do
 --  successlist[i]=false
 --  startping(i, host)
 --end
-----set up a timer to compile the results after this is hopefully for sure all done
---tmr.alarm(2, 5000, 0, 
---  function() 
---    avms=0
---    local avn=0
+
+--set up a timer to compile the results after this is hopefully for sure all done
+tmr.alarm(2, 5000, 0, 
+  function() 
+    avms=0
+    local avn=0
 --    for i,c in ipairs(clist) do
 --      --calculate the average time over the ones that worked and count the ones that didn't
 --      if successlist[i] then
@@ -90,15 +91,15 @@ clist = {}
 --      end
 --        
 --    end
---    clist=nil --done with this now
---    if avn > 0 then
---      avms = avms/(1000*avn)
---    else
---      avms = nil
---    end
---    -- log the data
---    dofile("envmon_evallog.lc")
---  end)
+    clist=nil --done with this now
+    if avn > 0 then
+      avms = avms/(1000*avn)
+    else
+      avms = nil
+    end
+    -- log the data
+    dofile("envmon_evallog.lc")
+  end)
 
 tmr.alarm(3, 7000, 0, 
   function() 
