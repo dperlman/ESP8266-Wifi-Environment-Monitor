@@ -10,11 +10,15 @@ local requesttemplate = "HEAD / HTTP/1.1\r\n"..
   "\r\n\r\n"
 
 
-local hostlist = 
-  {"google.com",
-  "yahoo.com",
-  "wisc.edu"}
+--local hostlist = 
+--  {"google.com",
+--  "yahoo.com",
+--  "wisc.edu"}
 
+local hostlist = 
+  {"216.58.216.238",
+  "98.138.253.109",
+  "144.92.9.70"}
 
 timelist = {}
 successlist = {false, false, false}
@@ -29,7 +33,8 @@ clist = {}
 --  local conn = net.createConnection(net.TCP, 0)
 --  local connectTime
 --  clist[i]=conn
---  local requesttext = string.gsub(requesttemplate, "#HOST#", host)
+--  --local requesttext = string.gsub(requesttemplate, "#HOST#", host)
+--  local requesttext = requesttemplate:gsub("#HOST#", host)
 --  conn:on("connection",  
 --    function(c) 
 --      c:send(requesttext) 
