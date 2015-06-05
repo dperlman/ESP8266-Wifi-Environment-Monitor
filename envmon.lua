@@ -27,40 +27,40 @@ clist = {}
 
 
 
---local function startping(i, host)
---  --print("startping", i, host, node.heap())
---  cc=cc+1
---  local conn = net.createConnection(net.TCP, 0)
---  local connectTime
---  clist[i]=conn
---  --local requesttext = string.gsub(requesttemplate, "#HOST#", host)
---  local requesttext = requesttemplate:gsub("#HOST#", host)
---  conn:on("connection",  
---    function(c) 
---      c:send(requesttext) 
---    end)
---  conn:on("receive", 
---    function(c, payload) 
---      timelist[i] = (tmr.now() - connectTime)
---      successlist[i]=true
---      --print(i, host, timelist[i])
---      --print(payload)
---      c:close()
---    end)
---  conn:on("disconnection", 
---    function(c)
---      if not successlist[i] then
---        timelist[i] = (tmr.now() - connectTime)
---        print("timeout", timelist[i])
---      end
---      print(successlist[i], timelist[i], host)
---    end)
---  
---  --start the thing
---  connectTime = tmr.now()
---  conn:connect(80,host)
---  print("started", i, host, node.heap())
---end
+local function startping(i, host)
+ --print("startping", i, host, node.heap())
+ cc=cc+1
+ local conn = net.createConnection(net.TCP, 0)
+ local connectTime
+ clist[i]=conn
+ --local requesttext = string.gsub(requesttemplate, "#HOST#", host)
+ local requesttext = requesttemplate:gsub("#HOST#", host)
+ conn:on("connection",  
+   function(c) 
+     c:send(requesttext) 
+   end)
+ conn:on("receive", 
+   function(c, payload) 
+     timelist[i] = (tmr.now() - connectTime)
+     successlist[i]=true
+     --print(i, host, timelist[i])
+     --print(payload)
+     c:close()
+   end)
+ conn:on("disconnection", 
+   function(c)
+     if not successlist[i] then
+       timelist[i] = (tmr.now() - connectTime)
+       print("timeout", timelist[i])
+     end
+     print(successlist[i], timelist[i], host)
+   end)
+ 
+ --start the thing
+ connectTime = tmr.now()
+ conn:connect(80,host)
+ print("started", i, host, node.heap())
+end
 
 
 
@@ -68,34 +68,34 @@ clist = {}
 --temphum()
 dofile("envmon_therm.lc")
 
---for i,host in pairs(hostlist) do
---  successlist[i]=false
---  startping(i, host)
---end
+for i,host in pairs(hostlist) do
+ successlist[i]=false
+ startping(i, host)
+end
 
 --set up a timer to compile the results after this is hopefully for sure all done
 tmr.alarm(2, 5000, 0, 
   function() 
     avms=0
     local avn=0
---    for i,c in ipairs(clist) do
---      --calculate the average time over the ones that worked and count the ones that didn't
---      if successlist[i] then
---        avms = avms + timelist[i]
---        avn=avn+1
---        timelist[i]=timelist[i]/1000
---      else
---        pfails=pfails+1
---        timelist[i]="fail"
---        print("fail", hostlist[i])
---      end
---      --clean up if the connection still exists
---      if c then
---        c:close()
---        c=nil
---      end
---        
---    end
+   for i,c in ipairs(clist) do
+     --calculate the average time over the ones that worked and count the ones that didn't
+     if successlist[i] then
+       avms = avms + timelist[i]
+       avn=avn+1
+       timelist[i]=timelist[i]/1000
+     else
+       pfails=pfails+1
+       timelist[i]="fail"
+       print("fail", hostlist[i])
+     end
+     --clean up if the connection still exists
+     if c then
+       c:close()
+       c=nil
+     end
+       
+   end
     clist=nil --done with this now
     if avn > 0 then
       avms = avms/(1000*avn)
