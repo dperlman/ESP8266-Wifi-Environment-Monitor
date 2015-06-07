@@ -1,6 +1,6 @@
 collectgarbage()
 startheap=node.heap()
-print("starting envmon, heap", startheap)
+--print("starting envmon, heap", startheap)
 
 
 local requesttemplate = "HEAD / HTTP/1.1\r\n".. 
