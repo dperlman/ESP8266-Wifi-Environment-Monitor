@@ -45,21 +45,22 @@ local function startping(i, host)
      successlist[i]=true
      --print(i, host, timelist[i])
      --print(payload)
+     -- !!!!! could check here that it is actually the right response
      c:close()
    end)
  conn:on("disconnection", 
    function(c)
      if not successlist[i] then
        timelist[i] = (tmr.now() - connectTime)
-       print("timeout", timelist[i])
+       print("timeout", host, timelist[i])
      end
-     print(successlist[i], timelist[i], host)
+     --print(successlist[i], timelist[i], host)
    end)
  
  --start the thing
  connectTime = tmr.now()
  conn:connect(80,host)
- print("started", i, host, node.heap())
+ --print("started", i, host, node.heap())
 end
 
 

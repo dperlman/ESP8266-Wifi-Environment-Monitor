@@ -37,6 +37,7 @@ stconn:on("receive",
     pfails=0
     tsuccess=true
     print(p:gsub('(.-)\n.-\n(.-)\n.*', '%1 %2 ...etc.', 1))
+    -- !!!!! could check here that it is actually the right response
   end)
 stconn:on("disconnection", 
   function(c)

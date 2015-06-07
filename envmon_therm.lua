@@ -8,7 +8,7 @@ avms = 0
 --print("temphum", node.heap())
 
 --dht22 version
-print("pre-dht heap", node.heap())
+--print("pre-dht heap", node.heap())
 local therm = require("dht_lib")
 therm.read22(3) --gpio0
 local thermtemp = therm.getTemperature()
@@ -22,13 +22,13 @@ humidity = hh:sub(1,-2).."."..hh:sub(-1)
 therm = nil
 package.loaded["dht_lib"]=nil
 _G["dht_lib"]=nil
-print("post-dht heap", node.heap())
+--print("post-dht heap", node.heap())
 collectgarbage()
-print("post-dht-gc heap", node.heap())
+--print("post-dht-gc heap", node.heap())
 
 
 --ds18b20 version
-print("pre-ds heap", node.heap())
+--print("pre-ds heap", node.heap())
 local therm = require("ds18b20INT")
 therm.setup(3) --gpio0
 local dsT
@@ -44,9 +44,9 @@ until dsT ~= 850000
 therm=nil
 package.loaded["ds18b20INT"]=nil
 _G["ds18b20INT"]=nil
-print("post-ds heap", node.heap())
+--print("post-ds heap", node.heap())
 collectgarbage()
-print("post-ds-gc heap", node.heap())
+--print("post-ds-gc heap", node.heap())
 
 local tt
 --calc diff

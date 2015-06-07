@@ -26,6 +26,7 @@ conn:on("receive",
   function(c, p)
     c:close()
     print(p:gsub('(.-)\n.-\n(.-)\n.*', '%1 %2 ...etc.', 1))
+    -- !!!!! could check here to see if it was actually the right response
   end)
 conn:on("disconnection", 
   function(c)
